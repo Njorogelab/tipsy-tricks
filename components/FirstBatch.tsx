@@ -1,5 +1,5 @@
 "use client";
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DrinkCard from "./DrinkCard";
 import { Drink } from "@/lib/class";
 
@@ -28,8 +28,8 @@ const FirstBatch = () => {
   return (
     <>
       {drinks.map((drink) => {
-        // Filter out null ingredients and measurements
         const ingredients = [];
+        
         for (let i = 1; i <= 15; i++) {
           const ingredient = drink[`strIngredient${i}` as keyof Drink];
           if (ingredient ) {
@@ -38,6 +38,8 @@ const FirstBatch = () => {
             ingredients.push(ingredient.trim());
           }
         }
+        
+        const separatedInstructions = drink.strInstructions.split('. ').map(instruction => instruction.trim()).filter(Boolean);
 
         return (
           <div key={drink.idDrink} className="flex-1 gap-6 wrap">
@@ -46,8 +48,11 @@ const FirstBatch = () => {
               image={drink.strDrinkThumb}
               type={drink.strAlcoholic}
               category={drink.strCategory}
-              ingredients={ingredients.join(', ')} // Join ingredients into a string
+              ingredients={ingredients.join(', ')} 
+              ingredientsArray={ingredients}// Join ingredients into a string
               glass={drink.strGlass}
+              id={drink.idDrink}
+              instructions={separatedInstructions}
             />
           </div>
         );
