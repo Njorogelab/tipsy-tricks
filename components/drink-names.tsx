@@ -7,7 +7,7 @@ export function DrinkNames() {
   useEffect(() => {
     async function fetchDrinkName() {
       try {
-        const response = await fetch('/api/drinkname', {cache: 'no-store'});
+        const response = await fetch(`/api/drinkname?timestamp=${new Date().getTime()}`, {cache: 'no-store'});
         const data = await response.json();
         console.log(data)
         setDrinkName(data);

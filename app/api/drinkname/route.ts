@@ -15,5 +15,14 @@ export async function GET(req: Request) {
   console.log(randomDrinkName)
 
   const drinkName = JSON.stringify(randomDrinkName)
-  return new Response(drinkName )
+
+  const headers = new Headers({
+    'Content-Type': 'application/json',
+    'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+    'Pragma': 'no-cache',
+    'Expires': '0',
+    'Surrogate-Control': 'no-store'
+  });
+  
+  return new Response(drinkName, {headers} )
 }
