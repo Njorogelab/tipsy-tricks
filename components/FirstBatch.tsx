@@ -7,7 +7,7 @@ const FirstBatch = () => {
   const [drinks, setDrinks] = useState<Drink[]>([]);
   useEffect(() => {
     // Fetch data directly without useState
-    fetch("/api/firstbatch")
+    fetch("/api/firstbatch", {cache:'no-store'})
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch data");

@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+export const fetchCache = 'force-no-store';
 export async function GET(res: Request) {
   const url = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
   const batchCount = 12;
@@ -20,7 +22,7 @@ export async function GET(res: Request) {
     const results = await Promise.all(fetchPromises)
       .then(drinksArrays => drinksArrays.flat()); // Flatten arrays into a single array of drinks
 
-    console.log(results); // Check the fetched results in console
+    // console.log(results); // Check the fetched results in console
 
     const jsonResponse = JSON.stringify(results);
     return new Response(jsonResponse, {

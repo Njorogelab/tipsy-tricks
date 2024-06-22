@@ -1,29 +1,29 @@
-import { Balancer } from "react-wrap-balancer";
-import * as fs from "fs"
-
-
-
+'use client'
+import { useState, useEffect } from 'react';
 
 export function DrinkNames() {
+  const [drinkName, setDrinkName] = useState<string>();
 
-    return (
-        <>
-            <div className="items-center block w-full ">
-                 <p className="text-3xl font-extrabold text-center md:text-5xl lg:text-7xl"> {makeArray()} </p> 
-            </div>
-        </>
-    )
-}
+  useEffect(() => {
+    async function fetchDrinkName() {
+      try {
+        const response = await fetch('/api/drinkname', {cache: 'no-store'});
+        const data = await response.json();
+        console.log(data)
+        setDrinkName(data);
+      } catch (error) {
+        console.error('Error fetching random drink name:', error);
+      }
+    }
 
+    fetchDrinkName();
+  }, []);
 
-function makeArray() {
-    let randomName = new Array();
-    randomName = fs.readFileSync('./lib/drink-names.txt',).toString('utf8').split('\r\n')
-    console.log(randomName)
-    let RANDOM_NAME_ARRAY_LENGTH = randomName.length
-    console.log(RANDOM_NAME_ARRAY_LENGTH)
-    let randomNumber = Math.floor(Math.random() * RANDOM_NAME_ARRAY_LENGTH)
-    let drinkName = randomName[randomNumber].toString()
-
-    return drinkName
+  return (
+    <div className="items-center block w-full">
+      <p className="text-3xl font-extrabold text-center md:text-5xl lg:text-7xl">
+        {drinkName || 'Loading...'}
+      </p>
+    </div>
+  );
 }

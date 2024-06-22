@@ -24,8 +24,8 @@ const DrinkCard: FC<DrinkCardProps> = ({
   return (
     <>
       <Card className="md:w-[600px] h-[200px] grid grid-cols-[200px_auto] col-auto my-4">
-        <div className="border rounded">
-          <Image src={image} width={200} height={200} alt={name} className="border rounded-l"/>
+        <div className="rounded ">
+          <Image src={image} width={200} height={200} alt={name} className="overflow-hidden border rounded-l"/>
         </div>
         <div className="flex flex-col p-3 text-balance">
           <p className="text-3xl font-semibold ">{name}</p>
