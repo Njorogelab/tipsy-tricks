@@ -1,4 +1,4 @@
-export async function GET(res: Response) {
+export async function GET(res: Request) {
   const url = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
   const batchCount = 12;
   
