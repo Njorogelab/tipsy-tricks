@@ -23,28 +23,34 @@ const DrinkCard: FC<DrinkCardProps> = ({
 }) => {
   return (
     <>
-      <Card className="md:w-[600px] h-[200px] grid grid-cols-[200px_auto] col-auto my-4">
+      <Card className="md:w-[600px] h-[200px] grid grid-cols-[200px_auto] content-around col-auto my-4">
         <div className="rounded ">
           <Image
             src={image}
             width={200}
             height={200}
             alt={name}
-            priority= {true}
+            priority={true}
             className="overflow-hidden border rounded-l"
           />
         </div>
-        <div className="flex flex-col p-3 text-balance">
-          <p className="text-3xl font-semibold ">{name}</p>
-          <div className="flex items-center gap-2">
+        <div className="flex flex-col content-around justify-around p-3 truncate text-balance">
+          <p className="font-semibold md:text-3xl ">{name}</p>
+          <div className="flex flex-wrap items-center md:gap-2 sm:text-xs md:text-base">
             <TypeIndicator type={type}></TypeIndicator>
             <p>{type}</p>
-            <p>{category}</p>
+            <p className="hidden md:block">{category}</p>
           </div>
-          <p className="font-semibold text-slate-400">Ingredients</p>
-          <p className="text-ellipsis">{ingredients}</p>
-          <p className="font-semibold text-slate-400">Glass</p>
-          <p>{glass}</p>
+          <div>
+            <p className="font-semibold text-slate-400">Ingredients</p>
+            <p className="text-ellipsis sm:truncate line-clamp-1">
+              {ingredients}
+            </p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-400">Glass</p>
+            <p>{glass}</p>
+          </div>
         </div>
       </Card>
     </>
