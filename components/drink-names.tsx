@@ -8,8 +8,8 @@ export function DrinkNames() {
 
     return (
         <>
-            <div className="block items-center w-full border">
-                 <p className="text-3xl md:text-5xl lg:text-7xl  text-center font-extrabold"> {makeArray()} </p> 
+            <div className="items-center block w-full ">
+                 <p className="text-3xl font-extrabold text-center md:text-5xl lg:text-7xl"> {makeArray()} </p> 
             </div>
         </>
     )

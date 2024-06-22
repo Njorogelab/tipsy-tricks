@@ -7,7 +7,7 @@ export function Herosection(){
 
 return (
     <>
-    <div className="w-full h-[500px] relative flex flex-col place-items-center justify-center border rounded-lg">
+    <div className="w-full h-[350px] relative flex flex-col place-items-center justify-center  rounded-lg">
         <div className="flex-col w-full place-items-center justify-items-center">
         {/* <Skeleton className="w-full h-full rounded-2xl"/> */}
         <DrinkNames/>
