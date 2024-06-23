@@ -79,7 +79,7 @@ const Page = () => {
             .filter(Boolean);
 
           return (
-            <main className="flex flex-col items-center ">
+            <main className="flex flex-col items-center " key={1}>
               <div key={drink.idDrink} className="flex-1 gap-6 wrap">
                 <DrinkCard
                   name={drink.strDrink}
