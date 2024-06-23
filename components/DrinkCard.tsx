@@ -36,7 +36,26 @@ const DrinkCard: FC<DrinkCardProps> = ({
   glass,
   ingredientsArray,
   instructions,
+  id
 }) => {
+
+    const savedDrinksKey = 'savedDrinks'
+    const handleSave = () => {
+        // Retrieve existing IDs from local storage, or initialize an empty array if none exist
+        const existingIds = JSON.parse(localStorage.getItem(savedDrinksKey) || '[]');
+    
+        // Check if the id is already in the array to avoid duplicates
+        if (!existingIds.includes(id)) {
+          // Add the new id to the array
+          const updatedIds = [...existingIds, id];
+    
+          // Save the updated array back to local storage
+          localStorage.setItem(savedDrinksKey, JSON.stringify(updatedIds));
+        } else {
+          console.log('ID already exists in local storage');
+        }
+      };
+    
   return (
     <>
       <Card className="md:w-[600px] h-[200px] grid grid-cols-[200px_auto] content-around col-auto my-4">
@@ -68,8 +87,8 @@ const DrinkCard: FC<DrinkCardProps> = ({
                         <img
                           src={image}
                           alt={name}
-                          width={600}
-                          height={400}
+                          width={300}
+                          height={200}
                           className="object-cover rounded-lg"
                         />
                         <div className="pt-3 text-muted-foreground">
@@ -97,8 +116,9 @@ const DrinkCard: FC<DrinkCardProps> = ({
                   </div>
                 </div>
               </main>
-              <DrawerFooter>
-                <DrawerClose asChild>
+              <DrawerFooter className="flex flex-row">
+                <Button variant={'default'} className="basis-1/2" onClick={handleSave}>Save</Button>
+                <DrawerClose asChild className="basis-1/2">
                   <Button variant="outline">Cancel</Button>
                 </DrawerClose>
               </DrawerFooter>
@@ -128,8 +148,8 @@ const DrinkCard: FC<DrinkCardProps> = ({
                         <img
                           src={image}
                           alt={name}
-                          width={600}
-                          height={400}
+                          width={300}
+                          height={200}
                           className="object-cover rounded-lg"
                         />
                         <div className="pt-3 text-muted-foreground">
@@ -157,8 +177,9 @@ const DrinkCard: FC<DrinkCardProps> = ({
                   </div>
                 </div>
               </main>
-              <DrawerFooter>
-                <DrawerClose asChild>
+              <DrawerFooter className="flex flex-row flex-grow w-fill">
+                <Button variant='default' className="basis-1/2">Save</Button>
+                <DrawerClose asChild className="basis-1/2">
                   <Button variant="outline">Cancel</Button>
                 </DrawerClose>
               </DrawerFooter>

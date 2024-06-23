@@ -29,15 +29,22 @@ const FirstBatch = () => {
     <>
       {drinks.map((drink) => {
         const ingredients = [];
+        const ingredientsArray = []
         
         for (let i = 1; i <= 15; i++) {
           const ingredient = drink[`strIngredient${i}` as keyof Drink];
-          if (ingredient ) {
-            ingredients.push(`${ingredient.trim()}`);
-          } else if (ingredient) {
-            ingredients.push(ingredient.trim());
-          }
-        }
+          const measure = drink[`strMeasure${i}` as keyof Drink];
+            
+            if (ingredient) {
+                ingredients.push(ingredient.trim());
+                if (measure) {
+                  ingredientsArray.push(`${ingredient.trim()} - ${measure.trim()}`);
+                } else {
+                  ingredientsArray.push(ingredient.trim());
+                }
+              }
+            }
+        
         
         const separatedInstructions = drink.strInstructions.split('. ').map(instruction => instruction.trim()).filter(Boolean);
 
@@ -49,7 +56,7 @@ const FirstBatch = () => {
               type={drink.strAlcoholic}
               category={drink.strCategory}
               ingredients={ingredients.join(', ')} 
-              ingredientsArray={ingredients}// Join ingredients into a string
+              ingredientsArray={ingredientsArray}// Join ingredients into a string
               glass={drink.strGlass}
               id={drink.idDrink}
               instructions={separatedInstructions}
