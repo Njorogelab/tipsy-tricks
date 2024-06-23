@@ -2,8 +2,8 @@
 
 import DrinkCard from "@/components/DrinkCard";
 import { Drink } from "@/lib/class";
-import { Main } from "next/document";
-import { FC, useEffect, useState } from "react";
+
+import {  useEffect, useState } from "react";
 
 const Page = () => {
   const savedDrinksKey = "savedDrinks";
