@@ -34,6 +34,6 @@ export async function POST(req: Request, { params }: { params: { id: string } })
     return new Response(drinksjson)
   } catch (error) {
     console.error('Error fetching data:', error);
-    return Response.json({ error: 'Could not get drink' }, { status: 500 });
+    return Response.error();
   }
 }
