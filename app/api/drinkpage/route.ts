@@ -17,12 +17,21 @@ export async function POST(req: Request, { params }: { params: { id: string } })
     const data = await response.json();
     console.log(data)
     const drink = data.drinks?.[0];
+    const drinksjson = JSON.stringify(drink)
+
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+      'Surrogate-Control': 'no-store'
+    });
 
     if (!drink) {
       return Response.error();
     }
 
-    return Response.json(JSON.stringify(drink));
+    return new Response(drinksjson)
   } catch (error) {
     console.error('Error fetching data:', error);
     return Response.json({ error: 'Could not get drink' }, { status: 500 });
