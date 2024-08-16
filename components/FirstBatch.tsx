@@ -27,7 +27,8 @@ const FirstBatch = () => {
 
   return (
     <>
-      {drinks.map((drink) => {
+    <div className="grid grid-cols-2 gap-6">
+    {drinks.map((drink) => {
         const ingredients = [];
         const ingredientsArray = []
         
@@ -49,7 +50,7 @@ const FirstBatch = () => {
         const separatedInstructions = drink.strInstructions.split('. ').map(instruction => instruction.trim()).filter(Boolean);
 
         return (
-          <div key={drink.idDrink} className="flex-1 gap-6 wrap">
+          <div key={drink.idDrink} className="flex gap-6 wrap">
             <DrinkCard
               name={drink.strDrink}
               image={drink.strDrinkThumb}
@@ -64,6 +65,8 @@ const FirstBatch = () => {
           </div>
         );
       })}
+    </div>
+      
     </>
   );
 };

@@ -53,51 +53,59 @@ const Page = () => {
 
   return (
     <>
-      {isStorageEmpty ? (
+    <div className="flex flex-col items-center justify-between min-h-screen p-8">
+    {isStorageEmpty ? (
         <p>LocalStorage is empty</p>
       ) : (
-        drinks.map((drink) => {
-          const ingredients = [];
-          const ingredientsArray =[]
-          for (let i = 1; i <= 15; i++) {
-            const ingredient = drink[`strIngredient${i}` as keyof Drink];
-            const measure = drink[`strMeasure${i}` as keyof Drink];
-            
-            if (ingredient) {
-                ingredients.push(ingredient.trim());
-                if (measure) {
-                  ingredientsArray.push(`${ingredient.trim()} - ${measure.trim()}`);
-                } else {
-                  ingredientsArray.push(ingredient.trim());
+        
+        <div className="grid grid-cols-2 gap-6">
+          {
+            drinks.map((drink) => {
+              const ingredients = [];
+              const ingredientsArray =[]
+              for (let i = 1; i <= 15; i++) {
+                const ingredient = drink[`strIngredient${i}` as keyof Drink];
+                const measure = drink[`strMeasure${i}` as keyof Drink];
+                
+                if (ingredient) {
+                    ingredients.push(ingredient.trim());
+                    if (measure) {
+                      ingredientsArray.push(`${ingredient.trim()} - ${measure.trim()}`);
+                    } else {
+                      ingredientsArray.push(ingredient.trim());
+                    }
+                  }
                 }
-              }
-            }
-
-          const separatedInstructions = drink.strInstructions
-            .split(". ")
-            .map((instruction) => instruction.trim())
-            .filter(Boolean);
-
-          return (
-            <main className="flex flex-col items-center " key={1}>
-              <div key={drink.idDrink} className="flex-1 gap-6 wrap">
-                <DrinkCard
-                  name={drink.strDrink}
-                  image={drink.strDrinkThumb}
-                  type={drink.strAlcoholic}
-                  category={drink.strCategory}
-                  ingredients={ingredients.join(", ")}
-                  ingredientsArray={ingredientsArray}
-                  glass={drink.strGlass}
-                  id={drink.idDrink}
-                  instructions={separatedInstructions}
-                  // instructions={[]}
-                />
-              </div>
-            </main>
-          );
-        })
+    
+              const separatedInstructions = drink.strInstructions
+                .split(". ")
+                .map((instruction) => instruction.trim())
+                .filter(Boolean);
+    
+              return (
+                <main className="flex flex-col items-center " key={1}>
+                  <div key={drink.idDrink} className="flex wrap">
+                    <DrinkCard
+                      name={drink.strDrink}
+                      image={drink.strDrinkThumb}
+                      type={drink.strAlcoholic}
+                      category={drink.strCategory}
+                      ingredients={ingredients.join(", ")}
+                      ingredientsArray={ingredientsArray}
+                      glass={drink.strGlass}
+                      id={drink.idDrink}
+                      instructions={separatedInstructions}
+                      // instructions={[]}
+                    />
+                  </div>
+                </main>
+              );
+            })
+          }
+        </div>
       )}
+    </div>
+      
     </>
   );
 };

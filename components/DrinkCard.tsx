@@ -14,6 +14,9 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
+import { ClipboardEdit, ExternalLink, Share2 } from "lucide-react";
+import CopyButton from "./CopyButton";
+import DrinkPageButton from "./DrinkPageButton";
 
 interface DrinkCardProps {
   name: string;
@@ -55,13 +58,14 @@ const DrinkCard: FC<DrinkCardProps> = ({
           console.log('ID already exists in local storage');
         }
       };
+      
     
   return (
     <>
       <Card className="md:w-[600px] h-[200px] grid grid-cols-[200px_auto] content-around col-auto my-4">
-        <div className="rounded ">
+        <div className="rounded h-4/5">
           <Drawer>
-            <DrawerTrigger>
+            <DrawerTrigger asChild>
               <Image
                 src={image}
                 width={200}
@@ -71,7 +75,7 @@ const DrinkCard: FC<DrinkCardProps> = ({
                 className="overflow-hidden border rounded-l"
               />
             </DrawerTrigger>
-            <DrawerContent>
+            <DrawerContent className="w-4/5 mx-auto h-4/5">
               <DrawerHeader className="hidden">
                 <DrawerTitle>Drinks popup</DrawerTitle>
                 <DrawerDescription>
@@ -94,6 +98,11 @@ const DrinkCard: FC<DrinkCardProps> = ({
                         <div className="pt-3 text-muted-foreground">
                           <p>Serving glass: {glass}</p>
                         </div>
+                        <div className="flex flex-row gap-2 pt-6 pr-6 place-items-start">
+              <Button variant={'secondary'} className="basis-1/2" onClick={handleSave}><Share2/></Button>
+              <CopyButton drinkId={id}/>
+              <DrinkPageButton drinkId={id}/>
+              </div>
                       </div>
 
                       <div>
@@ -117,9 +126,11 @@ const DrinkCard: FC<DrinkCardProps> = ({
                 </div>
               </main>
               <DrawerFooter className="flex flex-row">
-                <Button variant={'default'} className="basis-1/2" onClick={handleSave}>Save</Button>
+              <Button variant={'default'} className="basis-1/2" onClick={handleSave}>Save</Button>
+              
+                
                 <DrawerClose asChild className="basis-1/2">
-                  <Button variant="outline">Cancel</Button>
+                  <Button variant="default">Cancel</Button>
                 </DrawerClose>
               </DrawerFooter>
             </DrawerContent>

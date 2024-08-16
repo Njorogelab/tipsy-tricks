@@ -16,7 +16,7 @@ export default async function MarketingLayout({
   return (
     <div className="flex flex-col min-h-screen">
       <header className="container sticky top-0 z-40 w-full border-b backdrop-blur supports-backdrop-blur:bg-background/60 bg-background/90">
-        <div className="flex justify-between items-center py-6 h-20">
+        <div className="flex items-center justify-between h-20 py-6">
           <MainNav items={appConfig.mainNav} />
           <MainNav2  items={appConfig.mainNav2} />
           {/* <nav>
@@ -32,6 +32,7 @@ export default async function MarketingLayout({
           </nav> */}
         </div>
       </header>
+      
       <main className="flex-1">{children}</main>
       {/* <SiteFooter /> */}
     </div>
