@@ -22,7 +22,7 @@ export async function POST(req: Request, { params }: { params: { id: string } })
       return Response.error();
     }
 
-    return Response.json(drink);
+    return Response.json(JSON.stringify(drink));
   } catch (error) {
     console.error('Error fetching data:', error);
     return Response.json({ error: 'Could not get drink' }, { status: 500 });
