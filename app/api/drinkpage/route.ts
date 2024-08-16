@@ -19,7 +19,7 @@ export async function POST(req: Request, { params }: { params: { id: string } })
     const drink = data.drinks?.[0];
 
     if (!drink) {
-      return Response.json({ error: 'Drink not found' }, { status: 404 });
+      return Response.error();
     }
 
     return Response.json(drink);
